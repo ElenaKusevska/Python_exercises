@@ -15,12 +15,28 @@ class BinaryTree(object):
             traversal = self.preorder_print(start.right, traversal)
         return traversal
 
-tree = BinaryTree(1)
-tree.root.left = Node(2)
-tree.root.right = Node(3)
-tree.root.left.left = Node(4)
-tree.root.left.right = Node(5)
-tree.root.right.left = Node(6)
-tree.root.right.right = Node(7)
+    def depth_first(self, start, traversal):
+        traversal = ""
+        stack = [start]
+        while len(stack) > 0:
+            current = stack.pop(-1)
+            traversal = traversal + current.value
+            print(traversal)
+            if current.right != None:
+                stack.append(current.right)
+            if current.left != None:
+                stack.append(current.left)
+
+        return(traversal)
+
+
+tree = BinaryTree("a")
+tree.root.left = Node("b")
+tree.root.right = Node("c")
+tree.root.left.left = Node("d")
+tree.root.left.right = Node("e")
+tree.root.right.left = Node("f")
+tree.root.right.right = Node("g")
 
 print(tree.preorder_print(tree.root, ""))
+print(tree.depth_first(tree.root, ""))
